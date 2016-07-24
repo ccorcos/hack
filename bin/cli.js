@@ -88,12 +88,17 @@ function write(env, cmd) {
     "fi",
   ].join('\n')
 
+  // cd to this repo!
   shell.cd(__dirname + '/..')
+  // make sure the environment file exists!
   if (!shell.test('-e', env)) {
     shell.touch(env)
   }
+  // write to the environment file
   shell.exec('echo ' + JSON.stringify(text) + ' > ' + env)
+  // push up to github
   shell.exec('git add -A; git commit -m "hack.' + id + '"; git push origin master')
+  shell.exec('git checkout gh-pages; git rebase master; git push origin gh-pages')
 }
 
 
