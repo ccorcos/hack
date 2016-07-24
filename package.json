@@ -1,0 +1,16 @@
+{
+  "name": "hack",
+  "version": "1.0.0",
+  "description": "hack your friends!",
+  "repository": "",
+  "main": "index.js",
+  "bin": {
+    "hack": "bin/cli.js"
+  },
+  "keywords": ["hack"],
+  "author": "Chet Corcos <ccorcos@gmail.com> (http://www.chetcorcos.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "shelljs": "^0.7.1"
+  }
+}

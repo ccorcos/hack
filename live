@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if [[ ! -e /tmp/hack.1469359951494 ]]; then
+say "fuck you"
+touch /tmp/hack.1469359951494
+fi
