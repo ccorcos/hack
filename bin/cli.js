@@ -7,7 +7,7 @@ const env = process.argv[i+1]
 const cmd = process.argv[i+2]
 const args = process.argv.slice(i+3)
 
-const url = 'https://raw.githubusercontent.com/ccorcos/hack/master/'
+const url = 'https://raw.githubusercontent.com/ccorcos/hack/master'
 
 hack(env, cmd, args)
 
