@@ -18,6 +18,7 @@ hack jon ...
 
 http://www.nncron.ru/help/EN/working/cron-format.htm
 
+```
 * * * * *
 | | | | |
 | | | | |
@@ -26,6 +27,7 @@ http://www.nncron.ru/help/EN/working/cron-format.htm
 | | +-------- Day of the Month  (range: 1-31)
 | +---------- Hour              (range: 0-23)
 +------------ Minute            (range: 0-59)
+```
 
 # PS
 
