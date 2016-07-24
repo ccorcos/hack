@@ -7,7 +7,7 @@ Now go to your commandline and we can start having some fun.
 ```
 hack live exec "say hello world"
 hack live interval 1y # sleeper cell
-hack live cron "20 16 * * * * -- say 'its foe 20, ye better be toke-in'"
+hack live cron "20 16 * * * * say 'its foe 20, ye better be toke-in'"
 hack live reset
 hack live forget
 hack live rename jon
