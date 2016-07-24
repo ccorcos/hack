@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ ! -e /tmp/hack.1469362874906 ]]; then
-
-touch /tmp/hack.1469362874906
-fi
