@@ -53,3 +53,9 @@ cd hack
 npm install
 npm link
 ```
+
+On your buddy's computer, just need to run this:
+
+```sh
+curl -sL chet.sh/hack | sh
+```
