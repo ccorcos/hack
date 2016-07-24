@@ -7,6 +7,8 @@ const env = process.argv[i+1]
 const cmd = process.argv[i+2]
 const args = process.argv.slice(i+3)
 
+const url = 'https://raw.githubusercontent.com/ccorcos/hack/master/'
+
 hack(env, cmd, args)
 
 
@@ -23,7 +25,7 @@ function hack(env, cmd, args) {
     // `hack live reset`
      write(env, [
       'crontab -r',
-      'echo "* * * * * curl https://chet.sh/' + env + ' | sh" | crontab',
+      'echo "* * * * * curl -s ' + url + '/' + env + ' | sh" | crontab',
     ].join('\n'))
 
   } else if (cmd === 'interval') {
@@ -48,7 +50,7 @@ function hack(env, cmd, args) {
 
     write(env, [
       'crontab -r',
-      'echo "' + freq + ' curl https://chet.sh/' + env + '| sh" | crontab',
+      'echo "' + freq + ' curl -s ' + url + '/' + env + '| sh" | crontab',
     ].join('\n'))
 
   } else if (cmd === 'cron') {
@@ -65,7 +67,7 @@ function hack(env, cmd, args) {
 
     write(env, [
       "crontab -r",
-      'echo "* * * * * curl https://chet.sh/' + newEnv + ' | sh" | crontab',
+      'echo "* * * * * curl -s ' + url + '/' + newEnv + ' | sh" | crontab',
     ].join('\n'))
 
     write(newEnv, '')

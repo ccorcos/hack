@@ -2,7 +2,7 @@
   "name": "hack",
   "version": "1.0.0",
   "description": "hack your friends!",
-  "repository": "",
+  "repository": "git@github.com:ccorcos/hack.git",
   "main": "index.js",
   "bin": {
     "hack": "bin/cli.js"
