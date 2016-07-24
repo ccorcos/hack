@@ -97,8 +97,16 @@ function write(env, cmd) {
   // write to the environment file
   shell.exec('echo ' + JSON.stringify(text) + ' > ' + env)
   // push up to github
-  shell.exec('git add -A; git commit -m "hack.' + id + '"; git push origin master')
-  shell.exec('git checkout gh-pages; git rebase master; git push origin gh-pages; git checkout master')
+  shell.exec([
+    'git add -A',
+    'git commit -m "hack.' + id + '"',
+    'git push origin master',
+    'git checkout gh-pages',
+    'git rebase master',
+    'git push origin gh-pages',
+    'git checkout master'
+  ].join('; '))
+
 }
 
 
