@@ -42,3 +42,12 @@ Bought the domain name `chet.sh` here: https://www.nic.sh/
 - better help
 - better command validation
 - configure with custom domain name
+
+# Getting Started
+
+```sh
+git clone ...
+cd hack
+npm install
+npm link
+```

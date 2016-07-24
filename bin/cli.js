@@ -88,6 +88,7 @@ function write(env, cmd) {
     "fi",
   ].join('\n')
 
+  shell.cd(__dirname + '/..')
   if (!shell.test('-e', env)) {
     shell.touch(env)
   }
