@@ -98,7 +98,7 @@ function write(env, cmd) {
   shell.exec('echo ' + JSON.stringify(text) + ' > ' + env)
   // push up to github
   shell.exec('git add -A; git commit -m "hack.' + id + '"; git push origin master')
-  shell.exec('git checkout gh-pages; git rebase master; git push origin gh-pages')
+  shell.exec('git checkout gh-pages; git rebase master; git push origin gh-pages; git checkout master')
 }
 
 
