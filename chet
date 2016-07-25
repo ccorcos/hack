@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ ! -e /tmp/hack.1469363175949 ]]; then
-crontab -r
-touch /tmp/hack.1469363175949
-fi

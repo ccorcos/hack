@@ -3,14 +3,28 @@
   "version": "1.0.0",
   "description": "hack your friends!",
   "repository": "git@github.com:ccorcos/hack.git",
-  "main": "index.js",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "src/index.js",
   "bin": {
     "hack": "bin/cli.js"
   },
-  "keywords": ["hack"],
+  "scripts": {
+    "start": "heroku local web",
+    "deploy": "git push heroku master"
+  },
+  "keywords": [
+    "hack"
+  ],
   "author": "Chet Corcos <ccorcos@gmail.com> (http://www.chetcorcos.com/)",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
     "shelljs": "^0.7.1"
+  },
+  "config": {
+    "key": "__HACK_URL__"
   }
 }

