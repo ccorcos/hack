@@ -8,6 +8,7 @@ Clone, install, and link so you can use the `hack` cli tool.
 
 ```sh
 git clone https://github.com/ccorcos/hack.git
+git remote remove origin
 cd hack
 npm install
 npm link
