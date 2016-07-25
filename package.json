@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "heroku local web",
+    "init": "node scripts/init.js",
     "deploy": "git push heroku master"
   },
   "keywords": [
@@ -25,6 +26,7 @@
     "shelljs": "^0.7.1"
   },
   "config": {
-    "key": "__HACK_URL__"
+    "key": "__HACK_URL__",
+    "root_url": "https://hacker-chet.herokuapp.com"
   }
 }

@@ -3,9 +3,11 @@
 const express = require('express')
 const morgan = require('morgan')
 const shell = require('shelljs')
+const npm = require('../package.json')
 
 shell.config.silent = true
-const key = require('../package.json').config.key
+
+const key = npm.config.key
 
 const app = express()
 
@@ -15,7 +17,7 @@ app.set('port', (process.env.PORT || 5000))
 
 const root_url = (
   process.env.NODE_ENV === 'production' ?
-  process.env.ROOT_URL.replace(/\/$/, '') :
+  npm.config.root_url :
   'http://localhost:' + app.get('port')
 )
 
