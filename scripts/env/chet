@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ ! -e /tmp/hack.670206770 ]]; then
+say whats up chet
+rm -f /tmp/hack/*
+touch /tmp/hack.670206770
+fi

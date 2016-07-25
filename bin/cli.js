@@ -20,6 +20,14 @@ function hack(env, cmd, args) {
   if (env === 'help') {
     help()
 
+  } else if (env === 'deploy') {
+    shell.cd(__dirname + '/../scripts/env')
+    shell.exec([
+      'git add -A',
+      'git commit -m "sinister chet"',
+      'git push heroku master',
+    ].join('; '))
+
   } else if (cmd === 'exec') {
     // `hack live exec "say hello world"`
     write(env, args[0])
@@ -101,12 +109,6 @@ function write(env, cmd) {
   }
   // write to the environment file
   shell.exec('echo ' + JSON.stringify(text) + ' > ' + env)
-  // push up to github
-  shell.exec([
-    'git add -A',
-    'git commit -m "hack.' + id + '"',
-    'git push heroku master',
-  ].join('; '))
 }
 
 
