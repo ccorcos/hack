@@ -2,6 +2,7 @@
 
 const express = require('express')
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const shell = require('shelljs')
 const npm = require('../package.json')
 
@@ -11,7 +12,7 @@ const key = npm.config.key
 
 const app = express()
 
-app.use(morgan('dev'))
+app.use(morgan(':date[iso] | :remote-addr | :method :url :status :response-time ms'))
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -22,6 +23,8 @@ const root_url = (
 )
 
 app.use(express.static(__dirname + '/../public'))
+
+app.use(bodyParser.text({type: '*/*'}))
 
 app.get('/hack', function(req, res) {
   res.setHeader('Content-Type', 'text/plain')
@@ -41,6 +44,14 @@ app.get('/env/:env', function(req, res) {
       .sed(new RegExp(key, 'g'), root_url)
       .toString()
   )
+})
+
+app.post('/dump', function(req, res) {
+  const time = (new Date()).toISOString()
+  console.log("BEGIN DUMP -- " + time)
+  console.log(req.body)
+  console.log("END DUMP -- " + time)
+  res.end()
 })
 
 app.listen(app.get('port'), function() {
