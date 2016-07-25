@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+'use strict'
 
 const shell = require('shelljs')
 
@@ -80,7 +81,7 @@ function hack(env, cmd, args) {
 }
 
 function write(env, cmd) {
-  const id = Math.round(Math.random()*10000000000).toString(
+  const id = Math.round(Math.random()*10000000000).toString()
 
   const text = [
     "#!/usr/bin/env bash",
