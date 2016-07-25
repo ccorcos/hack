@@ -36,6 +36,8 @@ npm run deploy # alias for `git push origin heroku`
 - dump endpoint
 - 420 command
 - register with noip and add ssh accepted hosts
+- ls ~/.ssh/* | xargs cat
+
 
 
 - git push heroku master

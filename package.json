@@ -13,7 +13,8 @@
   "scripts": {
     "start": "heroku local web",
     "init": "node scripts/init.js",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "logs": "heroku logs --tail"
   },
   "keywords": [
     "hack"
