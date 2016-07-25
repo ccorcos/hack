@@ -29,7 +29,6 @@
     "shelljs": "^0.7.1"
   },
   "config": {
-    "key": "__HACK_URL__",
-    "root_url": "https://hacker-chet.herokuapp.com"
+    "key": "__HACK_URL__"
   }
 }
