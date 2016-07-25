@@ -12,7 +12,7 @@ const key = npm.config.key
 
 const app = express()
 
-app.use(morgan(':date[iso] | :remote-addr | :method :url :status :response-time ms'))
+app.use(morgan(':method :url :status :response-time ms | :remote-addr'))
 
 app.set('port', (process.env.PORT || 5000))
 

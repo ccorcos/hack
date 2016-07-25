@@ -34,9 +34,13 @@ function hack(env, cmd, args) {
     // `hack deploy`
     shell.exec([
       'git add -A',
-      'git commit -m "sinister chet"',
+      'git commit -m "sinister hack"',
       'git push heroku master',
     ].join('; '))
+
+  } else if (env === 'logs') {
+    // `hack logs`
+    shell.exec('heroku logs --tail --source app')
 
   } else if (cmd === 'exec') {
     // `hack live exec "say hello world"`
@@ -153,6 +157,7 @@ function cdenv() {
 }
 
 function wrap(char, text) {
+  // wrap text in a character and escape that character inside
   return char + text.replace(new RegExp(char, 'g'), '\\' + char) + char
 }
 

