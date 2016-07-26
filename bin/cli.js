@@ -122,6 +122,15 @@ function hack(env, cmd, args) {
         args[1]
       ]) + ' > /tmp/ransom; open -a TextEdit /tmp/ransom')
 
+    } else if (name === 'desktop') {
+      const src = args[1]
+      write(env, [
+        'cd /tmp',
+        'rm -f desktop'
+        'curl -o desktop ' + src,
+        `osascript -e 'tell application "System Events" to set picture of every desktop to ("/tmp/desktop" as POSIX file as alias)'`
+      ])
+
     } else {
       throw new Error('Unknown preset', name)
     }
