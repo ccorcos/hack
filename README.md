@@ -79,7 +79,7 @@ The following commands are specific to environments and must be followed with a 
 
 ## Presets
 - `hack <env> preset 420` - say at 4:20PM every day 'its foe 20, ye better be toke-in'
-- `hack <env> preset crontabs` -  dump and send current cron jobs
+- `hack <env> preset cronjobs` -  dump and send current cron jobs
 - `hack <env> preset desktop <image_url>` - set desktop background to image
 - `hack <env> preset passwords` - dump and send OSX keychains
 - `hack <env> preset ransom <message>` - Opens TextEdit with ransom message
