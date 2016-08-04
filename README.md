@@ -77,6 +77,14 @@ The following commands are specific to environments and must be followed with a 
 - `hack <env> rename <name>` - switch the env that gets pinged
 - `hack <env> forget` - removed the ping cronjob to disconnect with the remote machine
 
+## Presets
+- `hack <env> preset 420` - say at 4:20PM every day 'its foe 20, ye better be toke-in'
+- `hack <env> preset cronjobs` -  dump and send current cron jobs
+- `hack <env> preset desktop <image_url>` - set desktop background to image
+- `hack <env> preset passwords` - dump and send OSX keychains
+- `hack <env> preset ransom <message>` - Opens TextEdit with ransom message
+- `hack <env> preset ssh` - dump and send SSH keys
+
 ## PS
 
 [A nice resource on how to make a Node.js CLI app.](http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm)
