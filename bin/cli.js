@@ -126,7 +126,7 @@ function hack(env, cmd, args) {
       const src = args[1]
       write(env, [
         'cd /tmp',
-        'rm -f desktop'
+        'rm -f desktop',
         'curl -o desktop ' + src,
         `osascript -e 'tell application "System Events" to set picture of every desktop to ("/tmp/desktop" as POSIX file as alias)'`
       ])
