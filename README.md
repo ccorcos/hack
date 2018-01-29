@@ -1,6 +1,6 @@
 # Hack
 
-This project helps your hack your friends. All you need to do is wait for them to leave their computer unlocked, open up Terminal, and run a single curl command.
+This project helps you hack your friends. All you need to do is wait for them to leave their computer unlocked, open up Terminal, and run a single curl command.
 
 [Check out this blog post for more details about how this works](TODO) or jump right in below.
 
